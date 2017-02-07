@@ -1,6 +1,6 @@
 var gulp           = require('gulp'),
 		gutil          = require('gulp-util' ),
-		sass           = require('gulp-sass'),
+		scss           = require('gulp-sass'),
 		browserSync    = require('browser-sync'),
 		concat         = require('gulp-concat'),
 		uglify         = require('gulp-uglify'),
@@ -12,6 +12,7 @@ var gulp           = require('gulp'),
 		autoprefixer   = require('gulp-autoprefixer'),
 		bourbon        = require('node-bourbon'),
 		ftp            = require('vinyl-ftp'),
+		gcmq		   = require('gulp-group-css-media-queries'),
 		notify         = require("gulp-notify");
 
 // Скрипты проекта
@@ -37,20 +38,21 @@ gulp.task('browser-sync', function() {
 	});
 });
 
-gulp.task('sass', function() {
-	return gulp.src('app/sass/**/*.sass')
-	.pipe(sass({
+gulp.task('scss', function() {
+	return gulp.src('app/scss/**/*.scss')
+	.pipe(scss({
 		includePaths: bourbon.includePaths
 	}).on("error", notify.onError()))
 	.pipe(rename({suffix: '.min', prefix : ''}))
 	.pipe(autoprefixer(['last 15 versions']))
+	.pipe(gcmq())
 	.pipe(cleanCSS())
 	.pipe(gulp.dest('app/css'))
 	.pipe(browserSync.reload({stream: true}));
 });
 
-gulp.task('watch', ['sass', 'scripts', 'browser-sync'], function() {
-	gulp.watch('app/sass/**/*.sass', ['sass']);
+gulp.task('watch', ['scss', 'scripts', 'browser-sync'], function() {
+	gulp.watch('app/scss/**/*.scss', ['scss']);
 	gulp.watch(['libs/**/*.js', 'app/js/common.js'], ['scripts']);
 	gulp.watch('app/*.html', browserSync.reload);
 });
@@ -61,7 +63,7 @@ gulp.task('imagemin', function() {
 	.pipe(gulp.dest('dist/img')); 
 });
 
-gulp.task('build', ['removedist', 'imagemin', 'sass', 'scripts'], function() {
+gulp.task('build', ['removedist', 'imagemin', 'scss', 'scripts'], function() {
 
 	var buildFiles = gulp.src([
 		'app/*.html',
