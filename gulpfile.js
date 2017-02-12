@@ -12,7 +12,7 @@ var gulp           = require('gulp'),
     autoprefixer   = require('gulp-autoprefixer'),
     bourbon        = require('node-bourbon'),
     ftp            = require('vinyl-ftp'),
-    gcmq		   = require('gulp-group-css-media-queries'),
+    gcmq           = require('gulp-group-css-media-queries'),
     notify         = require("gulp-notify");
 
 // Скрипты проекта
