@@ -13,7 +13,8 @@ var gulp           = require('gulp'),
     bourbon        = require('node-bourbon'),
     ftp            = require('vinyl-ftp'),
     gcmq           = require('gulp-group-css-media-queries'),
-    notify         = require("gulp-notify");
+    notify         = require("gulp-notify"),
+	htmlmin		   = require("gulp-htmlmin");
 
 // Скрипты проекта
 gulp.task('scripts', function() {
@@ -67,6 +68,10 @@ gulp.task('build', ['removedist', 'imagemin', 'scss', 'scripts'], function() {
 
 	var buildFiles = gulp.src([
 		'app/*.html',
+		]).pipe(htmlmin({collapseWhitespace: true}))
+		.pipe(gulp.dest('dist'));
+
+	var buildFiles_ = gulp.src([
 		'app/.htaccess',
 		]).pipe(gulp.dest('dist'));
 

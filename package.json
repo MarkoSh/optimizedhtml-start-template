@@ -17,12 +17,14 @@
     "gulp-clean-css": "^3.0.0",
     "gulp-concat": "^2.6.1",
     "gulp-group-css-media-queries": "^1.2.0",
+    "gulp-htmlmin": "^3.0.0",
     "gulp-imagemin": "^3.1.1",
     "gulp-notify": "^3.0.0",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^3.1.0",
     "gulp-uglify": "^2.0.1",
     "gulp-util": "^3.0.8",
+    "htmlmin": "0.0.7",
     "node-bourbon": "^4.2.8",
     "vinyl-ftp": "^0.6.0"
   }
