@@ -1,6 +1,7 @@
 /node_modules/
 /dist/
 /app/css/
+/app/js/scripts.min.js
 /**/*.psd
 /**/Thumbs.db
 .idea
