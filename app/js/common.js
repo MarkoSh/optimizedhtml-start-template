@@ -4,6 +4,10 @@ $(function() {
 	var main = {
 		init: function () {
 			console.log('Started...');
+
+			$(".main-content").animate({
+				opacity: 1
+			});
 		}
 	};
 
